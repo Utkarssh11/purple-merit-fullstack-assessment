@@ -38,7 +38,3 @@ This project is a full-stack web application built for the Purple Merit Technolo
 ```bash
 git clone https://github.com/Utkarssh11/purple-merit-fullstack-assessment.git
 cd purple-merit-fullstack-assessment
-
-
-
-
