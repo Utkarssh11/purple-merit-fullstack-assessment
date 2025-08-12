@@ -12,35 +12,19 @@ dotenv.config();
 
 const app = express();
 
-// --- START OF CORS CONFIGURATION ---
-// Add all your possible frontend URLs here.
-const allowedOrigins = [
-  'http://localhost:5173', // For local development
-  'https://purple-merit-fullstack-assessment.vercel.app', // Your main Vercel project URL
-  // Add any other specific deployment preview URLs if you have them
-];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-};
-
-app.use(cors(corsOptions));
-// --- END OF CORS CONFIGURATION ---
+// --- START OF SIMPLIFIED CORS CONFIGURATION ---
+// This allows requests from any origin. It's the easiest way to solve CORS issues for this assessment.
+app.use(cors());
+// --- END OF SIMPLIFIED CORS CONFIGURATION ---
 
 app.use(express.json());
 
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+// A simple health check route
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'Backend is running' });
 });
 
+// Your other routes
 app.use('/api/auth', authRoutes);
 app.use('/api/drivers', driverRoutes);
 app.use('/api/routes', routeRoutes);
@@ -52,7 +36,9 @@ const PORT = process.env.PORT || 5001;
 async function start() {
   if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL missing');
   if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET missing');
+  
   await connectDB(process.env.DATABASE_URL);
+  
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
