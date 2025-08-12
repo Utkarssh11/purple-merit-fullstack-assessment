@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-GreenCart Logistics Dashboard
+# GreenCart Logistics Dashboard
 
 ## Project Overview
 
@@ -263,9 +262,3 @@ Deploy to a static hosting provider. Configure `VITE_API_URL` to the deployed ba
 ### Database
 
 Use MongoDB Atlas and set the connection string in `DATABASE_URL`.
-
-
-
-=======
-# purple-merit-fullstack-assessment
->>>>>>> 0e9f936605d836d1408a83ee18f11697059e67e1
