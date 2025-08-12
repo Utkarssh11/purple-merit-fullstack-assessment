@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 
-// --- START OF NEW CORS CONFIGURATION ---
+// --- START OF ENHANCED CORS CONFIGURATION ---
 const corsOptions = {
   origin: (origin, callback) => {
     // Allow requests from any vercel.app subdomain, localhost, and no origin (like Postman)
@@ -24,13 +24,28 @@ const corsOptions = {
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
   preflightContinue: false,
-  optionsSuccessStatus: 204
+  optionsSuccessStatus: 204,
+  maxAge: 86400
 };
 
 app.use(cors(corsOptions));
-// --- END OF NEW CORS CONFIGURATION ---
+
+// Additional CORS headers for extra security
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+// --- END OF ENHANCED CORS CONFIGURATION ---
 
 app.use(express.json());
 

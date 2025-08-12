@@ -262,11 +262,4 @@ Deploy to a static hosting provider. Configure `VITE_API_URL` to the deployed ba
 ### Database
 
 Use MongoDB Atlas and set the connection string in `DATABASE_URL`.
-<<<<<<< HEAD
-=======
 
-
-
-=======
-# purple-merit-fullstack-assessment
->>>>>>> f2c1855465bf8c19b351eb58660d91359fe6b943
