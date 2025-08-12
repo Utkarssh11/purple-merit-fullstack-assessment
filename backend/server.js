@@ -12,49 +12,17 @@ dotenv.config();
 
 const app = express();
 
-// --- START OF ENHANCED CORS CONFIGURATION ---
-const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests from any vercel.app subdomain, localhost, and no origin (like Postman)
-    if (!origin || origin.endsWith('.vercel.app') || origin.startsWith('http://localhost')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  maxAge: 86400
-};
-
-app.use(cors(corsOptions));
-
-// Additional CORS headers for extra security
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
-  } else {
-    next();
-  }
-});
-// --- END OF ENHANCED CORS CONFIGURATION ---
+// --- THE ONLY CHANGE IS HERE ---
+// This is the simplest possible CORS setup. It allows all requests.
+app.use(cors());
+// -----------------------------
 
 app.use(express.json());
 
-// A simple health check route
 app.get('/', (req, res) => {
   res.json({ status: 'ok', message: 'Backend is running' });
 });
 
-// Your other routes
 app.use('/api/auth', authRoutes);
 app.use('/api/drivers', driverRoutes);
 app.use('/api/routes', routeRoutes);
