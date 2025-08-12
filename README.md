@@ -7,7 +7,7 @@ This project is a full-stack web application built for the Purple Merit Technolo
 ### **Live Demo & Credentials**
 
 *   **Live App (Frontend):** **[https://purple-merit-fullstack-assessment.vercel.app/](https://purple-merit-fullstack-assessment.vercel.app/)**
-*   **Backend API:** **[https://purple-merit-fullstack-assessment-production.up.railway.app/](https://purple-merit-fullstack-assessment-production.up.railway.app/)**
+*   **Backend API:** **[https://purple-merit-fullstack-assessment.onrender.com/](https://purple-merit-fullstack-assessment.onrender.com/)**
 
 > **Login Credentials:**
 > *   **Username:** `manager`
