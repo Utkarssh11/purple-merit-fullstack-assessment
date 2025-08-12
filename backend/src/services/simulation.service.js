@@ -49,3 +49,5 @@ function simulateKpis(drivers, routes, orders, numberOfDrivers, maxHoursPerDrive
 module.exports = { simulateKpis, isDriverFatigued }
 
 
+
+
