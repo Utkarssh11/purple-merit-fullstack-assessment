@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 GreenCart Logistics Dashboard
 
 ## Project Overview
@@ -268,4 +267,3 @@ Use MongoDB Atlas and set the connection string in `DATABASE_URL`.
 
 =======
 # purple-merit-fullstack-assessment
->>>>>>> 0e9f936605d836d1408a83ee18f11697059e67e1
